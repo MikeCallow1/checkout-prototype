@@ -7,29 +7,8 @@ class VashiCheckout {
         console.log('Vashi Checkout Prototype')
         this.loadingOverlay = document.querySelector('.loading-overlay')
         this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]')
-        this.bindLoginClick()
         this.bindAddressToggles()
         this.initTabs()
-    }
-
-    bindLoginClick() {
-        const loginButton = document.querySelector('.login').querySelector('input[type="submit"]')
-        loginButton.addEventListener('click', this.handleLogin.bind(this))
-    }
-
-    handleLogin(e) {
-        e.preventDefault();
-        this.showLoadingSpinner()
-        this.timeout(1000)
-            .then(() => {
-                this.hideLoadingSpinner()
-                this.showBillingAddressSection()
-                this.scrollToSection('.address--billing')
-            })
-            .catch(() => {
-                this.hideLoadingSpinner()
-                console.log('Login error')
-            })
     }
 
     bindAddressToggles() {
