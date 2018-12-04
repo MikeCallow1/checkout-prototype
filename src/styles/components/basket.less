@@ -1,0 +1,61 @@
+/**
+    Basket
+        Item
+*/
+
+// Basket Container
+.basket {
+    .checkout__section
+}
+
+.basket__title {
+    .checkout__title
+}
+
+// Item Component
+.item {
+    display: grid;
+    grid-template-areas:
+        "image name name name"
+        "image price price price"
+        "image attributes attributes attributes";
+    font-family: 'Work Sans', sans-serif;
+    padding: .2em 1em;
+
+    &:first-of-type {
+        padding-top: 1em;
+    }
+}
+
+.item__image {
+    width: 100px;
+    grid-area: image;
+
+    img {
+        width: 100%;
+    }
+}
+
+.item__name {
+    grid-area: name;
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.item__price {
+    grid-area: price;
+    font-size: .9em;
+}
+
+.item__attributes {
+    grid-area: attributes;
+    font-size: .9em;
+}
+
+.item__attribute-key {
+
+}
+
+.item__attribute-value {
+    font-weight: bold;
+}

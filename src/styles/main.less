@@ -1,0 +1,31 @@
+//Normalise lifted from our Magento repo:
+@import 'base/normalise';
+
+//Fonts
+@import 'base/fonts';
+
+//Colours
+@import 'base/colours';
+
+//Layout
+@import 'base/layout';
+
+//Checkout Container + sections
+@import 'containers/checkout';
+
+
+/**
+    Each checkout 'component' has its own folder.
+    This should hopefully make it easier to import the bits
+    we need for each 'component' in the actual checkout.
+*/
+
+@import 'components/basket';
+
+@import 'components/login';
+
+@import 'components/address';
+
+@import 'components/inputs';
+
+@import 'components/buttons';
