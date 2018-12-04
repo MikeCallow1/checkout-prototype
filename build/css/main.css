@@ -246,7 +246,7 @@ h6 {
   height: 0;
   width: 0;
   top: 0;
-  background: #bcc3eeaa;
+  background: #d6daf3aa;
   z-index: 1;
   transition: 300ms opacity;
 }
@@ -325,6 +325,7 @@ h6 {
   border: 1px solid #e8e8e8;
   box-shadow: 0px 1px 4px #f6f6ff;
   margin-bottom: 1rem;
+  position: relative;
 }
 .address__title {
   font-size: 1.4em;
@@ -348,6 +349,20 @@ h6 {
 }
 .input-different-shipping label {
   padding-left: 2rem;
+}
+.address--disabled:after {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #e8e8e8aa;
+}
+.address--hidden {
+  height: 0;
+  overflow: hidden;
 }
 input {
   background: white;

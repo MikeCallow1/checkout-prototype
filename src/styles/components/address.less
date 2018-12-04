@@ -1,5 +1,6 @@
 .address {
-    .checkout__section
+    .checkout__section;
+    position: relative;
 }
 
 .address__title {
@@ -24,4 +25,22 @@
     label {
         padding-left: 2rem;
     }
+}
+
+.address--disabled {
+    &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background: @checkout-section-disabled;
+    }
+}
+
+.address--hidden {
+    height: 0;
+    overflow: hidden;
 }

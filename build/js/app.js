@@ -19,8 +19,10 @@ function () {
     key: "init",
     value: function init() {
       console.log('Vashi Checkout Prototype');
-      this.bindLoginClick();
       this.loadingOverlay = document.querySelector('.loading-overlay');
+      this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]');
+      this.bindLoginClick();
+      this.bindAddressToggles();
     }
   }, {
     key: "bindLoginClick",
@@ -39,25 +41,75 @@ function () {
       this.timeout(1000).then(function () {
         _this.hideLoadingSpinner();
 
-        _this.showAddressSection();
+        _this.showBillingAddressSection();
+
+        _this.scrollToSection('.address--billing');
+      }).catch(function () {
+        _this.hideLoadingSpinner();
+
+        console.log('Login error');
+      });
+    }
+  }, {
+    key: "bindAddressToggles",
+    value: function bindAddressToggles() {
+      var _this2 = this;
+
+      this.addressToggles.forEach(function (radio) {
+        radio.addEventListener('change', function (e) {
+          if (e.target.id === 'billing:use_different') {
+            _this2.showLoadingSpinner();
+
+            _this2.timeout(1000).then(function () {
+              _this2.hideLoadingSpinner();
+
+              _this2.showShippingAddressSection();
+
+              _this2.scrollToSection('.address--shipping');
+            }).catch(function () {
+              _this2.hideLoadingSpinner();
+
+              console.log('Shipping address error');
+            });
+          } else {
+            _this2.hideShippingAddressSection();
+          }
+        });
       });
     }
   }, {
     key: "showLoadingSpinner",
     value: function showLoadingSpinner() {
-      console.log('show loader');
       this.loadingOverlay.classList.add('loading-overlay--active');
     }
   }, {
     key: "hideLoadingSpinner",
     value: function hideLoadingSpinner() {
-      console.log('hide loader');
       this.loadingOverlay.classList.remove('loading-overlay--active');
     }
   }, {
-    key: "showAddressSection",
-    value: function showAddressSection() {
-      console.log('show address section');
+    key: "showBillingAddressSection",
+    value: function showBillingAddressSection() {
+      document.querySelector('.address--billing').classList.remove('address--disabled');
+    }
+  }, {
+    key: "scrollToSection",
+    value: function scrollToSection(el) {
+      document.querySelector(el).scrollIntoView({
+        block: 'start',
+        behavior: 'smooth'
+      });
+    }
+  }, {
+    key: "showShippingAddressSection",
+    value: function showShippingAddressSection() {
+      document.querySelector('.address--shipping').classList.remove('address--hidden');
+      document.querySelector('.address--shipping').classList.remove('address--disabled');
+    }
+  }, {
+    key: "hideShippingAddressSection",
+    value: function hideShippingAddressSection() {
+      document.querySelector('.address--shipping').classList.add('address--hidden');
     }
     /**
      * Timeout for spoofing ajax reqs
