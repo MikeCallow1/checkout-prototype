@@ -237,6 +237,28 @@ h6 {
   padding: 0.5em 1em 0.2em 1em;
   border-bottom: 1px solid #e8e8e8;
 }
+.loading-overlay {
+  opacity: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+  width: 0;
+  top: 0;
+  background: #bcc3eeaa;
+  z-index: 1;
+  transition: 300ms opacity;
+}
+.loading-overlay img {
+  width: 64px;
+  height: 64px;
+}
+.loading-overlay--active {
+  opacity: 1;
+  height: 100vh;
+  width: 100vw;
+}
 /**
     Each checkout 'component' has its own folder.
     This should hopefully make it easier to import the bits
@@ -322,6 +344,7 @@ h6 {
 }
 .input-different-shipping input[type="radio"] {
   width: auto;
+  height: 32px;
 }
 .input-different-shipping label {
   padding-left: 2rem;

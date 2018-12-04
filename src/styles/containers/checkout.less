@@ -25,3 +25,28 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0.5em 1em .2em 1em;
     border-bottom: 1px solid @checkout-section-border;
 }
+
+.loading-overlay {
+    opacity: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 0;
+    width: 0;
+    top: 0;
+    background: @overlay-bg;    
+    z-index: 1;
+    transition: 300ms opacity;
+
+    img {
+        width: 64px;
+        height: 64px;
+    }
+
+    &--active {
+        opacity: 1;
+        height: 100vh;
+        width: 100vw;
+    }
+}

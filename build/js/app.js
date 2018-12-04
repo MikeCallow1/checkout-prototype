@@ -19,6 +19,60 @@ function () {
     key: "init",
     value: function init() {
       console.log('Vashi Checkout Prototype');
+      this.bindLoginClick();
+      this.loadingOverlay = document.querySelector('.loading-overlay');
+    }
+  }, {
+    key: "bindLoginClick",
+    value: function bindLoginClick() {
+      var loginButton = document.querySelector('.login').querySelector('input[type="submit"]');
+      loginButton.addEventListener('click', this.handleLogin.bind(this));
+    }
+  }, {
+    key: "handleLogin",
+    value: function handleLogin(e) {
+      var _this = this;
+
+      e.preventDefault();
+      console.log('logging in...');
+      this.showLoadingSpinner();
+      this.timeout(1000).then(function () {
+        _this.hideLoadingSpinner();
+
+        _this.showAddressSection();
+      });
+    }
+  }, {
+    key: "showLoadingSpinner",
+    value: function showLoadingSpinner() {
+      console.log('show loader');
+      this.loadingOverlay.classList.add('loading-overlay--active');
+    }
+  }, {
+    key: "hideLoadingSpinner",
+    value: function hideLoadingSpinner() {
+      console.log('hide loader');
+      this.loadingOverlay.classList.remove('loading-overlay--active');
+    }
+  }, {
+    key: "showAddressSection",
+    value: function showAddressSection() {
+      console.log('show address section');
+    }
+    /**
+     * Timeout for spoofing ajax reqs
+     * 
+     * @param {Number} ms 
+     */
+
+  }, {
+    key: "timeout",
+    value: function timeout(ms) {
+      return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+          resolve();
+        }, ms);
+      });
     }
   }]);
 
