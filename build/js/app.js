@@ -23,6 +23,7 @@ function () {
       this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]');
       this.bindLoginClick();
       this.bindAddressToggles();
+      this.initTabs();
     }
   }, {
     key: "bindLoginClick",
@@ -36,7 +37,6 @@ function () {
       var _this = this;
 
       e.preventDefault();
-      console.log('logging in...');
       this.showLoadingSpinner();
       this.timeout(1000).then(function () {
         _this.hideLoadingSpinner();
@@ -110,6 +110,38 @@ function () {
     key: "hideShippingAddressSection",
     value: function hideShippingAddressSection() {
       document.querySelector('.address--shipping').classList.add('address--hidden');
+    }
+  }, {
+    key: "initTabs",
+    value: function initTabs() {
+      var tabs = document.querySelectorAll('.tabs');
+      tabs.forEach(function (tab) {
+        var tabButton = tab.querySelectorAll('.tab');
+        tabButton.forEach(function (tab, i) {
+          tab.addEventListener('click', function (e) {
+            e.preventDefault();
+            setInactivePanels();
+            setActivePanel(i, tab);
+          });
+        });
+
+        function setInactivePanels() {
+          var tabButton = tab.querySelectorAll('.tab');
+          tabButton.forEach(function (button) {
+            button.classList.remove('tab--active');
+          });
+          var tabContent = tab.querySelectorAll('.tab__content');
+          tabContent.forEach(function (tab) {
+            tab.classList.remove('tab__content--active');
+          });
+        }
+
+        function setActivePanel(i, tabButton) {
+          var tabContent = tab.querySelectorAll('.tab__content');
+          tabContent[i].classList.add('tab__content--active');
+          tabButton.classList.add('tab--active');
+        }
+      });
     }
     /**
      * Timeout for spoofing ajax reqs

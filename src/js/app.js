@@ -9,6 +9,7 @@ class VashiCheckout {
         this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]')
         this.bindLoginClick()
         this.bindAddressToggles()
+        this.initTabs()
     }
 
     bindLoginClick() {
@@ -18,7 +19,6 @@ class VashiCheckout {
 
     handleLogin(e) {
         e.preventDefault();
-        console.log('logging in...')
         this.showLoadingSpinner()
         this.timeout(1000)
             .then(() => {
@@ -77,6 +77,39 @@ class VashiCheckout {
 
     hideShippingAddressSection() {
         document.querySelector('.address--shipping').classList.add('address--hidden')
+    }
+
+    initTabs() {
+        const tabs = document.querySelectorAll('.tabs')
+
+        tabs.forEach((tab) => {
+            let tabButton = tab.querySelectorAll('.tab')
+            tabButton.forEach((tab, i) => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault()
+                    setInactivePanels()
+                    setActivePanel(i, tab)
+                })
+            })
+
+            function setInactivePanels() {
+                let tabButton = tab.querySelectorAll('.tab')
+                tabButton.forEach((button) => {
+                    button.classList.remove('tab--active')
+                })
+
+                let tabContent = tab.querySelectorAll('.tab__content')
+                tabContent.forEach((tab) => {
+                    tab.classList.remove('tab__content--active')
+                })
+            }
+
+            function setActivePanel(i, tabButton) {
+                let tabContent = tab.querySelectorAll('.tab__content')
+                tabContent[i].classList.add('tab__content--active')
+                tabButton.classList.add('tab--active')
+            }
+        })
     }
 
     /**
