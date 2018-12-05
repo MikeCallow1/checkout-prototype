@@ -14,7 +14,7 @@ class VashiCheckout {
     }
 
     initFancyFields() {
-        const fields = document.querySelectorAll('.vashi-input')
+        const fields = document.querySelectorAll('input.vashi-input')
         for (let field of fields) {
             field.addEventListener('focusout', (e) => 
                 e.target.value !== "" ?
