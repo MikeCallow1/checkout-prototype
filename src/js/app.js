@@ -1,14 +1,13 @@
 class VashiCheckout {
 
-
     constructor() {
+        this.loadingOverlay = document.querySelector('.loading-overlay')
+        this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]')
         this.init()
     }
 
     init() {
         console.log('Vashi Checkout Prototype')
-        this.loadingOverlay = document.querySelector('.loading-overlay')
-        this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]')
         this.bindAddressToggles()
         this.initTabs()
         this.bindPlaceOrder()

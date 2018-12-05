@@ -10,17 +10,21 @@
     padding: 1em;
     background: @tab-bg;
     border: 1px solid @tab-border;
-    color: @primary-colour;
+    color: @tab-inactive;
     text-decoration: none;
     position: relative;
     z-index: 2;
-    transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+    transition: 
+        background-color 300ms ease-in-out,
+        box-shadow 300ms ease-in-out,
+        color 300ms ease-in-out;
     box-shadow: inset 0px -12px 14px -14px @tab-shadow;
 
     &--active {
+        color: @primary-colour;
         background: @tab-active-bg;
         border-bottom: none;
-        box-shadow: none;
+        box-shadow: inset 0px 0px 14px -14px @tab-shadow;
     }
 
     &:first-child {
@@ -33,12 +37,13 @@
     padding: 1em 10%;
     border: 1px solid @tab-border;
     position: absolute;
-    z-index: 1;
+    z-index: -1;
     top: -1px;
 
     &--active {
         position: relative;
         opacity: 1;
         transition: opacity 300ms ease-in-out;
+        z-index: 1;
     }
 }
