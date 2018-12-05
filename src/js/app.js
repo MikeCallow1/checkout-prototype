@@ -9,6 +9,19 @@ class VashiCheckout {
         this.addressToggles = document.querySelectorAll('.input-different-shipping input[type="radio"]')
         this.bindAddressToggles()
         this.initTabs()
+        this.bindPlaceOrder()
+        this.initFancyFields()
+    }
+
+    initFancyFields() {
+        const fields = document.querySelectorAll('.vashi-input')
+        for (let field of fields) {
+            field.addEventListener('focusout', (e) => 
+                e.target.value !== "" ?
+                    field.classList.add('has-value') :
+                    field.classList.remove('has-value')
+            )
+        }
     }
 
     bindAddressToggles() {
@@ -88,6 +101,16 @@ class VashiCheckout {
                 tabContent[i].classList.add('tab__content--active')
                 tabButton.classList.add('tab--active')
             }
+        })
+    }
+
+    bindPlaceOrder() {
+        document.querySelector('.place-order').addEventListener('click', () => {
+            this.showLoadingSpinner()
+            this.timeout(5000)
+                .then(() => {
+                    this.hideLoadingSpinner()
+                })
         })
     }
 
