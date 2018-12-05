@@ -9,6 +9,8 @@
     input[type="number"],
     input[type="tel"] {
 
+        transition: border-color 300ms ease-in-out, color 300ms ease-in-out;
+
         + label {
             font-size: @field-font-size;
             position: absolute;
@@ -17,15 +19,25 @@
             background: @secondary-colour;
             top: 0;
             transform: translateY(@field-height / 2);
-            transition: transform 300ms ease-in-out;
+            transition: transform 300ms ease-in-out, color 300ms ease-in-out;
             z-index: 1;
             pointer-events: none;
         }
 
-        &:focus + label,
-        &.has-value + label {
-            transform: translateY(0);
+        &.has-value,
+        &:-webkit-autofill {
+            color: @label-filled;
+        }
 
+        &:focus,
+        &.has-value,
+        &:-webkit-autofill {
+            border-color: @label-filled;
+
+            & + label {
+                transform: translateY(0);
+                color: @label-filled
+            }
         }
     }
 }
