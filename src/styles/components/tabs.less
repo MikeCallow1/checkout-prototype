@@ -14,10 +14,13 @@
     text-decoration: none;
     position: relative;
     z-index: 2;
+    transition: background-color 300ms ease-in-out, box-shadow 300ms ease-in-out;
+    box-shadow: inset 0px -12px 14px -14px @tab-shadow;
 
     &--active {
         background: @tab-active-bg;
         border-bottom: none;
+        box-shadow: none;
     }
 
     &:first-child {
@@ -26,14 +29,16 @@
 }
 
 .tab__content {
-    display: none;
+    opacity: 0;
     padding: 1em 10%;
     border: 1px solid @tab-border;
-    position: relative;
+    position: absolute;
     z-index: 1;
     top: -1px;
 
     &--active {
-        display: inherit;
+        position: relative;
+        opacity: 1;
+        transition: opacity 300ms ease-in-out;
     }
 }
